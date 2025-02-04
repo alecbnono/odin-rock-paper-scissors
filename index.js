@@ -8,15 +8,16 @@ function getComputerChoice() {
 
   switch (choice) {
     case 0:
+      console.log("ROCK");
       return "ROCK";
     case 1:
+      console.log("PAPER");
       return "PAPER";
     case 2:
+      console.log("SCISSORS");
       return "SCISSORS";
   }
 }
-
-console.log(getComputerChoice());
 
 function getHumanChoice() {
   let input;
@@ -50,6 +51,7 @@ function playRound(humanChoice, computerChoice) {
     console.log("You Lose!");
     computerScore++;
   }
+  console.log(`Your Score: ${humanScore} \nComputer Score: ${computerScore}`);
 }
 
 const humanSelection = getHumanChoice();
