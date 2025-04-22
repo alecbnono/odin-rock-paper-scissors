@@ -1,5 +1,10 @@
 "use strict";
 
+let humanScore = 0;
+let computerScore = 0;
+
+
+
 function getComputerChoice() {
   const choice = Math.floor(Math.random() * 3);
 
@@ -30,12 +35,8 @@ function getHumanChoice() {
   return input;
 }
 
-function playGame() {
-  let humanScore = 0;
-  let computerScore = 0;
-
-  function playRound() {
-    let humanChoice = getHumanChoice();
+function playRound(choice) {
+    let humanChoice = choice;
     let computerChoice = getComputerChoice();
     if (humanChoice === computerChoice) {
       console.log("Its a Tie!");
@@ -55,15 +56,37 @@ function playGame() {
       computerScore++;
     }
     console.log(`Your Score: ${humanScore} \nComputer Score: ${computerScore}`);
-  }
-  for (let i = 0; i < 5; i++) playRound();
-
-  if (humanScore === computerScore) {
-    console.log("Its an Overall Draw!");
-  } else if (humanScore > computerScore) {
-    console.log("You win the entire game!");
-  } else if (humanScore < computerScore) {
-    console.log("You lost the entire game.");
-  }
 }
-playGame();
+
+const selections = document.querySelector(".selections");
+const rockButton = document.querySelector(".rock");
+const paperButton = document.querySelector(".paper");
+const scissorsButton = document.querySelector(".scissors");
+
+selections.addEventListener("click", (e) => {
+
+    let target = e.target;
+
+    switch(target.class) {
+        case "rock":
+            playRound("ROCK");
+            break;
+
+        case "paper":
+            playRound("PAPER");
+            break;
+
+        case "scissors":
+            playRound("SCISSORS");
+            break;
+    }
+})
+
+if (humanScore === computerScore) {
+console.log("Its an Overall Draw!");
+} else if (humanScore > computerScore) {
+console.log("You win the entire game!");
+} else if (humanScore < computerScore) {
+console.log("You lost the entire game.");
+}
+
